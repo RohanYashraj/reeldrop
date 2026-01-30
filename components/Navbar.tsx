@@ -2,6 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 export const Navbar = () => {
   return (
@@ -29,19 +36,31 @@ export const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <Link
-          href="/login"
-          className="text-sm font-medium hover:text-foreground transition-colors hidden sm:block"
-        >
-          Login
-        </Link>
-        <Link
-          href="/signup"
-          className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-opacity"
-        >
-          Get Started
-        </Link>
+        <SignedOut>
+          <div className="flex items-center gap-4">
+            <SignInButton mode="modal">
+              <button className="text-sm font-medium hover:text-foreground transition-colors hidden sm:block cursor-pointer">
+                Login
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-opacity cursor-pointer">
+                Get Started
+              </button>
+            </SignUpButton>
+          </div>
+        </SignedOut>
+        <SignedIn>
+          <UserButton
+            appearance={{
+              elements: {
+                userButtonAvatarBox: "w-8 h-8"
+              }
+            }}
+          />
+        </SignedIn>
       </div>
     </motion.nav>
   );
 };
+
