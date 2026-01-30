@@ -51,14 +51,23 @@ export const Navbar = () => {
           </div>
         </SignedOut>
         <SignedIn>
-          <UserButton
-            appearance={{
-              elements: {
-                userButtonAvatarBox: "w-8 h-8"
-              }
-            }}
-          />
+          <div className="flex items-center gap-4">
+            <Link
+              href="/dashboard"
+              className="text-sm font-medium hover:text-foreground transition-colors hidden sm:block"
+            >
+              Dashboard
+            </Link>
+            <UserButton
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: "w-8 h-8"
+                }
+              }}
+            />
+          </div>
         </SignedIn>
+
       </div>
     </motion.nav>
   );
